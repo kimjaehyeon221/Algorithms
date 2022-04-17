@@ -8,7 +8,7 @@
 #include <time.h>
 
 //데이터의 개수 지정
-#define SIZE 10000 //100, 500, 1000, 5000, 10000 변환해가며 실행하기 
+#define SIZE 1000 //100, 500, 1000, 5000, 10000 변환해가며 실행하기 
 
 int array[SIZE];    //각 정렬 알고리즘에서 필요한 배열
 int original[SIZE];    //랜덤 데이터를 저장할 원본 배열
@@ -198,7 +198,11 @@ void main()
     printf("100, 500, 1000, 5000, 10000개의 random generated data에 대해 실행 시간을 비교\n");
 
     n = SIZE;  // 이를 통해서 실행 시간을 조절한다. 
-    double calcuateSum = 0;
+    double calcuate_exchange_sum = 0;
+    double calcuate_heap_sum = 0;
+    double calcuate_radix_sum = 0;
+    double calcuate_merge_sum = 0;
+    double calcuate_quick_sum = 0;
 
     for (int i = 0; i < n; i++)
         original[i] = rand();
@@ -210,10 +214,10 @@ void main()
         start = clock();
         exchange_sort(array, n);
         finish = clock();
-        calcuateSum += CalcTime();
+        calcuate_exchange_sum += CalcTime();
     }
     printf("1. Exchange sort complete\n");
-    printf("1. Exchange sort average running time %f sec\n\n", calcuateSum / 5);  //평균시간이기에 5로 나누었다. 
+    printf("1. Exchange sort average running time %f sec\n\n", calcuate_exchange_sum / 5);  //평균시간이기에 5로 나누었다. 
 
 
     printf("2. Heap sort start\n");
@@ -222,10 +226,10 @@ void main()
         start = clock();
         heap_sort(array, n);
         finish = clock();
-        calcuateSum += CalcTime();
+        calcuate_heap_sum += CalcTime();
     }
     printf("2. Heap sort complete\n");
-    printf("2. Heap sort average running time %f sec\n\n", calcuateSum / 5);  //평균시간이기에 5로 나누었다.
+    printf("2. Heap sort average running time %f sec\n\n", calcuate_heap_sum / 5);  //평균시간이기에 5로 나누었다.
 
    printf("3. Radix sort start\n");
     for (int j = 0; j < 5; j++) {
@@ -233,10 +237,10 @@ void main()
         start = clock();
         radix_sort(array, n);
         finish = clock();
-        calcuateSum += CalcTime();
+        calcuate_radix_sum += CalcTime();
     }
     printf("3. Radix sort complete\n");
-    printf("3. Radix sort average running time %f sec\n\n", calcuateSum / 5);  //평균시간이기에 5로 나누었다. */
+    printf("3. Radix sort average running time %f sec\n\n", calcuate_radix_sum / 5);  //평균시간이기에 5로 나누었다. */
 
 
     printf("4. Merge sort start\n");
@@ -246,11 +250,11 @@ void main()
         printf("[%d] Radix sort running ...", j);
         merge_sort(array, 0, n);
         finish = clock();
-        calcuateSum += CalcTime();
+        calcuate_merge_sum += CalcTime();
     }
     printf("\n");
     printf("4. Merge sort complete \n");
-    printf("4. Merge sort average running time %f sec\n\n", calcuateSum / 5);  //평균시간이기에 5로 나누었다. 
+    printf("4. Merge sort average running time %f sec\n\n", calcuate_merge_sum / 5);  //평균시간이기에 5로 나누었다. 
 
     printf("5. Quick sort start\n");
     for (int j = 0; j < 5; j++) {
@@ -259,9 +263,9 @@ void main()
         printf("[%d] Quick sort running ... ", j);
         quick_sort(array, 0, n);
         finish = clock();
-        calcuateSum += CalcTime();
+        calcuate_quick_sum += CalcTime();
     }
     printf("\n");
     printf("5. Quick sort complete\n");
-    printf("5. Quick sort average running time %f sec\n\n", calcuateSum / 5);  //평균시간이기에 5로 나누었다. 
+    printf("5. Quick sort average running time %f sec\n\n", calcuate_quick_sum / 5);  //평균시간이기에 5로 나누었다. 
 }
